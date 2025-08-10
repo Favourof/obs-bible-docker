@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bible Overlay</title>
+    <style>
+        body {
+            margin: 0;
+            background: transparent;
+            /* So OBS background is clear */
+            color: white;
+            font-family: "arial", serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .verse-container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 100%;
+            height: 100vh;
+        }
+
+        .reference {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .text {
+            font-size: 2.5rem;
+            margin-top: 10px;
+            /* height: 100%; */
+            /* width: 100%; */
+            /* border: thin solid red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="verse-container">
+        <div class="reference" id="verseRef">select verse baba</div>
+        <div class="text" id="verseText">no vere baba
+        </div>
+    </div>
+
+    <script>
+        const refElem = document.getElementById("verseRef");
+        const textElem = document.getElementById("verseText");
+
+        // Use SSE to update instantly when verse changes
+        const evtSource = new EventSource("/api/verse-stream");
+
+        evtSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.reference && data.text) {
+                refElem.textContent = data.reference;
+                textElem.textContent = data.text;
+            } else {
+                refElem.textContent = "No verse selected";
+                textElem.textContent = "select verse baba";
+            }
+        };
+    </script>
+</body>
+
+</html>

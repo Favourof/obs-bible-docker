@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>OBS Bible Dock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: white;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: #ffd700;
+            text-align: center;
+        }
+
+        .search-container {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        input,
+        select,
+        button {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin: 0.3rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 200px;
+        }
+
+        #results {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+
+        .verse-text {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        button.send-to-obs {
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📖 OBS Bible Dock</h1>
+
+    <div class="search-container">
+        <label for="version">Version:</label>
+        <select id="version">
+            <option value="KJV">KJV</option>
+            <option value="NIV">NIV</option>
+        </select>
+
+        <input type="text" id="reference" placeholder="e.g. John 3:16" />
+
+        <button id="searchBtn">Search</button>
+    </div>
+
+    <div id="results">
+        <strong>Search for a verse to see it here</strong>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
